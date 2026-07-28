@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+
+<title>Web Planet — Creiamo e gestiamo il sito della tua attività</title>
+<meta name="description" content="Il sito che ti porta clienti. Tre pacchetti chiari: vetrina da 300 €, sito attivo da 800 €, negozio online da 1.500 €. Gestione 100 €/mese e un referente che risponde.">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Web Planet">
+<meta property="og:title" content="Web Planet — Il sito che ti porta clienti">
+<meta property="og:description" content="Creiamo e gestiamo siti per ristoranti, bar, palestre, studi e concessionarie. Tre pacchetti, prezzo chiaro da subito.">
+<meta property="og:url" content="https://www.webplanet.it/">
+<meta property="og:image" content="https://www.webplanet.it/anteprima.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://www.webplanet.it/#studio",
+  "name": "Web Planet",
+  "description": "Studio che crea e gestisce siti web per attività locali: siti vetrina, siti con prenotazioni e ordini, negozi online.",
+  "url": "https://www.webplanet.it/",
+  "email": "mailacaso@gmail.com",
+  "telephone": "+393330000000",
+  "priceRange": "€€",
+  "image": "https://www.webplanet.it/anteprima.png",
+  "makesOffer": [
+    { "@type": "Offer", "name": "Vetrina — sito statico", "price": "300", "priceCurrency": "EUR", "description": "Il sito che presenta l'attività: chi sei, cosa fai, dove sei, orari, foto, contatti." },
+    { "@type": "Offer", "name": "Attivo — sito con interazioni", "price": "800", "priceCurrency": "EUR", "description": "Il sito che riceve ordini, richieste, prenotazioni e pagamenti ricorrenti." },
+    { "@type": "Offer", "name": "Negozio — e-commerce", "price": "1500", "priceCurrency": "EUR", "description": "Il sito che vende i prodotti dell'attività: catalogo, carrello, pagamenti, spedizioni." },
+    { "@type": "Offer", "name": "Gestione", "price": "100", "priceCurrency": "EUR", "description": "Hosting, dominio, backup, aggiornamenti, sicurezza, modifiche ai contenuti e report mensile." }
+  ]
+}
+</script>
+
+<style>
+/* ============================================================
+   WEB PLANET — le insegne di notte
+   Fondo nero. I colori pieni sono il corpo dell'insegna,
+   le varianti "accese" sono la luce: su nero i pieni
+   crollano (blu 1,51:1) e non possono portare testo.
+   ============================================================ */
+
+:root{
+  /* fondo e superfici */
+  --ink:#0C0D0C;        /* nero pece — sfondo             */
+  --ink-2:#161815;      /* superficie sollevata           */
+  --ink-3:#1F221E;      /* superficie interna             */
+
+  /* insegne — colori pieni, solo come FONDO                */
+  --blu:#14315C;
+  --verde:#2E5B4A;
+  --rosso:#A62B22;
+  --ottone:#C08A2E;
+
+  /* insegne accese — per il TESTO su nero, tutte AA        */
+  --blu-on:#5B8FD8;     /*  5,90:1 */
+  --verde-on:#5CAE8C;   /*  7,31:1 */
+  --rosso-on:#E05F49;   /*  5,47:1 */
+  --ottone-on:#CE9A3E;  /*  7,71:1 */
+
+  --enamel:#EDEEE8;     /* 16,69:1 — testo principale      */
+  --fumo:#9AA0A6;       /*  7,37:1 — testo secondario      */
+
+  --hair:1px solid #2C302B;
+  --radius:2px;
+
+  --t-kicker:.78rem;
+  --t--1:.9rem;
+  --t-0:1.06rem;
+  --t-section:clamp(2.2rem, 4.8vw, 4rem);
+  --t-hero:clamp(2.9rem, 10vw, 8.6rem);
+
+  --gutter:clamp(1.15rem, 4vw, 3.5rem);
+  --maxw:1280px;
+
+  /* movimento */
+  --ease-out:cubic-bezier(.2,.7,.2,1);
+  --ease-state:cubic-bezier(.4,0,.2,1);
+  --d-parallax:150ms;
+  --d-micro:180ms;
+  --d-enter:560ms;
+}
+
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;background:var(--ink);}
+
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--enamel);
+  font-family:"Fraunces",Georgia,serif;
+  font-optical-sizing:auto;
+  font-size:var(--t-0);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+h1,h2,h3,h4{
+  font-family:"Bricolage Grotesque",sans-serif;
+  font-weight:800;letter-spacing:-.03em;line-height:1;
+  margin:0;text-wrap:balance;overflow-wrap:break-word;
+}
+p{margin:0 0 1rem;}
+p:last-child{margin-bottom:0;}
+a{color:inherit;}
+
+.kicker{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:var(--t-kicker);font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ottone-on);
+  margin:0 0 1.1rem;display:flex;align-items:center;gap:.6rem;
+}
+.kicker::before{content:"";width:26px;border-top:1px solid var(--ottone);flex:0 0 auto;}
+.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;}
+.muted{color:var(--fumo);}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter);}
+.section-pad{padding-block:clamp(3.4rem,7vw,6.5rem);}
+.section-head{max-width:44ch;margin-bottom:.5rem;}
+.section-head h2{font-size:var(--t-section);margin-bottom:1rem;}
+.section-head p{font-size:1.06rem;color:var(--fumo);max-width:54ch;}
+
+:focus-visible{
+  outline:3px solid var(--ottone-on);outline-offset:2px;
+  border-radius:var(--radius);transition:none !important;
+}
+::selection{background:var(--ottone);color:var(--ink);}
+
+/* -------- Bottoni -------- */
+.btn{
+  --bg:var(--rosso);--fg:var(--enamel);--bd:var(--rosso);
+  font-family:"Bricolage Grotesque",sans-serif;font-weight:700;
+  font-size:1.02rem;letter-spacing:-.01em;
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.85em 1.4em;background:var(--bg);color:var(--fg);
+  border:1px solid var(--bd);border-radius:var(--radius);
+  cursor:pointer;text-decoration:none;line-height:1;
+  transition:transform var(--d-micro) var(--ease-state),
+             background var(--d-micro) var(--ease-state),
+             color var(--d-micro) var(--ease-state);
+}
+.btn:hover{--bg:#BE3227;--bd:#BE3227;}
+.btn:active{transform:translateY(1px);}
+.btn .arrow{transition:transform var(--d-micro) var(--ease-state);}
+.btn:hover .arrow{transform:translateX(4px);}
+.btn--ghost{--bg:transparent;--fg:var(--enamel);--bd:#3A3F38;}
+.btn--ghost:hover{--bg:var(--enamel);--fg:var(--ink);--bd:var(--enamel);}
+.btn--on-color{--bg:transparent;--fg:var(--enamel);--bd:var(--enamel);}
+.btn--on-color:hover{--bg:var(--enamel);--fg:var(--ink);}
+.btn.is-done{--bg:var(--verde);--bd:var(--verde);--fg:var(--enamel);cursor:default;justify-content:center;}
+
+.textlink{
+  position:relative;font-family:"IBM Plex Mono",monospace;
+  font-size:var(--t--1);color:var(--fumo);text-decoration:none;padding-bottom:3px;
+  transition:color var(--d-micro) var(--ease-state);
+}
+.textlink::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ottone);}
+.textlink:hover{color:var(--enamel);}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-head{position:sticky;top:0;z-index:50;background:var(--ink);border-bottom:var(--hair);}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:66px;}
+.nameplate{
+  display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--enamel);
+  border:1px solid var(--ottone);border-radius:var(--radius);padding:.36rem .75rem;
+}
+.nameplate b{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:-.02em;font-size:1.02rem;}
+.nameplate .dot{width:8px;height:8px;background:var(--rosso-on);border-radius:50%;flex:0 0 auto;}
+.nav-links{display:flex;gap:1.6rem;align-items:center;}
+.nav-links a{
+  position:relative;font-family:"IBM Plex Mono",monospace;font-size:.8rem;letter-spacing:.04em;
+  text-decoration:none;color:var(--fumo);padding-bottom:4px;
+  transition:color var(--d-micro) var(--ease-state);
+}
+.nav-links a:hover{color:var(--enamel);}
+.nav-links a::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ottone);
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform var(--d-micro) var(--ease-state);
+}
+.nav-links a:hover::after,.nav-links a:focus-visible::after{transform:scaleX(1);}
+.head-cta .btn{font-size:.9rem;padding:.6em 1rem;}
+@media (max-width:920px){.nav-links{display:none;}}
+
+/* ============================================================
+   HERO + PARALLASSE PRINCIPALE
+   ============================================================ */
+.hero{padding-top:clamp(2.5rem,5vw,4.5rem);padding-bottom:clamp(2.5rem,5vw,4rem);border-bottom:var(--hair);}
+.hero h1{font-size:var(--t-hero);margin:0 0 1.4rem;max-width:14ch;}
+.hero h1 em{font-style:normal;color:var(--rosso-on);}
+.hero-sub{font-size:clamp(1.08rem,1.9vw,1.35rem);max-width:38ch;margin-bottom:1.9rem;color:var(--fumo);}
+.hero-sub b{color:var(--enamel);font-weight:600;}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem;margin-bottom:clamp(2rem,4vw,3rem);}
+
+
+/* ============================================================
+   MOMENTO DELLA SCELTA
+   ============================================================ */
+.choice-grid{display:grid;grid-template-columns:1fr;border:var(--hair);border-radius:var(--radius);overflow:hidden;margin-top:2.2rem;}
+@media (min-width:820px){.choice-grid{grid-template-columns:repeat(3,1fr);}}
+.choice{
+  padding:clamp(1.4rem,3vw,2.2rem);text-decoration:none;color:var(--enamel);
+  border-bottom:var(--hair);display:flex;flex-direction:column;gap:.9rem;min-height:190px;
+  background:var(--ink-2);
+  transition:background var(--d-micro) var(--ease-state);
+}
+@media (min-width:820px){.choice{border-bottom:0;border-right:var(--hair);}.choice:last-child{border-right:0;}}
+.choice:last-child{border-bottom:0;}
+.choice .q{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:-.03em;line-height:1.05;font-size:clamp(1.3rem,2.2vw,1.75rem);}
+.choice .to{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--fumo);margin-top:auto;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;}
+.choice .pill{color:var(--enamel);padding:.15rem .5rem;border-radius:var(--radius);}
+.choice[data-c="1"]:hover{background:#12203A;}
+.choice[data-c="2"]:hover{background:#16302A;}
+.choice[data-c="3"]:hover{background:#2E1512;}
+.choice[data-c="1"] .pill{background:var(--blu);}
+.choice[data-c="2"] .pill{background:var(--verde);}
+.choice[data-c="3"] .pill{background:var(--rosso);}
+
+/* ============================================================
+   ANTEPRIME — otto attività, otto siti
+   Ogni scheda ha il suo parallasse: si muove solo quella
+   sotto il mouse, mai otto insieme.
+   ============================================================ */
+.pv-grid{display:grid;grid-template-columns:1fr;gap:1.1rem;margin-top:2.4rem;}
+@media (min-width:600px){.pv-grid{grid-template-columns:repeat(2,1fr);}}
+@media (min-width:1000px){.pv-grid{grid-template-columns:repeat(4,1fr);}}
+
+.pv{
+  border:var(--hair);border-radius:var(--radius);background:var(--ink-2);overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:border-color var(--d-micro) var(--ease-state);
+}
+.pv:hover{border-color:var(--ac);}
+.pv.ac-rosso {--ac:var(--rosso-on); --deep:var(--rosso);}
+.pv.ac-verde {--ac:var(--verde-on); --deep:var(--verde);}
+.pv.ac-blu   {--ac:var(--blu-on);   --deep:var(--blu);}
+.pv.ac-ottone{--ac:var(--ottone-on);--deep:#7A5518;}
+
+.pv-bar{display:flex;align-items:center;gap:.45rem;padding:.45rem .6rem;border-bottom:var(--hair);background:var(--ink-3);}
+.pv-bar i{width:6px;height:6px;border-radius:50%;background:#3D423B;flex:0 0 auto;}
+.pv-bar i:first-child{background:var(--ac);}
+.pv-url{font-family:"IBM Plex Mono",monospace;font-size:.6rem;color:var(--fumo);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+.pv-frame{overflow:hidden;aspect-ratio:4/3;background:var(--ink);}
+.pv-scene{
+  width:100%;height:100%;padding:.7rem;display:flex;flex-direction:column;gap:.4rem;
+  transform-origin:center;transform:scale(1) translate(0,0);
+  transition:transform var(--d-parallax) ease-out;
+}
+@media (prefers-reduced-motion:reduce){ .pv-scene{transition:none;transform:none !important;} }
+
+/* mattoncini del mini-sito */
+.m-top{display:flex;align-items:center;justify-content:space-between;gap:.4rem;}
+.m-name{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:.72rem;letter-spacing:-.02em;color:var(--enamel);line-height:1.1;}
+.m-sign{height:26px;border-radius:1px;background:var(--deep);border:1px solid var(--ac);display:flex;align-items:center;padding:0 .4rem;}
+.m-sign span{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:.6rem;color:var(--enamel);letter-spacing:-.01em;}
+.m-btn{
+  font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:.56rem;
+  background:var(--deep);color:var(--enamel);border:1px solid var(--ac);
+  border-radius:1px;padding:.28rem .4rem;text-align:center;
+}
+.m-btn.ghost{background:transparent;color:var(--ac);}
+.m-line{height:4px;border-radius:1px;background:#2E322C;}
+.m-line.w80{width:80%;} .m-line.w60{width:60%;} .m-line.w45{width:45%;}
+.m-rows{display:grid;gap:.26rem;}
+.m-row{display:flex;align-items:center;justify-content:space-between;gap:.4rem;font-family:"IBM Plex Mono",monospace;font-size:.54rem;color:var(--fumo);}
+.m-row b{color:var(--ac);font-weight:600;}
+.m-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.26rem;}
+.m-tile{aspect-ratio:1;background:var(--ink-3);border:1px solid #2E322C;border-radius:1px;display:flex;align-items:flex-end;padding:.2rem;}
+.m-tile em{font-family:"IBM Plex Mono",monospace;font-style:normal;font-size:.5rem;color:var(--ac);}
+.m-week{display:grid;grid-template-columns:repeat(5,1fr);gap:.2rem;}
+.m-week div{height:15px;background:var(--ink-3);border:1px solid #2E322C;border-radius:1px;}
+.m-week div.on{background:var(--deep);border-color:var(--ac);}
+.m-slots{display:flex;gap:.22rem;flex-wrap:wrap;}
+.m-slot{font-family:"IBM Plex Mono",monospace;font-size:.5rem;color:var(--fumo);border:1px solid #2E322C;border-radius:1px;padding:.14rem .26rem;}
+.m-slot.on{color:var(--enamel);background:var(--deep);border-color:var(--ac);}
+.m-cars{display:grid;gap:.26rem;}
+.m-car{display:flex;align-items:center;gap:.3rem;border:1px solid #2E322C;border-radius:1px;padding:.22rem .3rem;}
+.m-car .box{width:20px;height:12px;background:var(--deep);border:1px solid var(--ac);border-radius:1px;flex:0 0 auto;}
+.m-car span{font-family:"IBM Plex Mono",monospace;font-size:.5rem;color:var(--fumo);}
+.m-car b{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.52rem;color:var(--ac);}
+.m-spacer{flex:1;}
+
+.pv-foot{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.6rem .7rem;border-top:var(--hair);}
+.pv-kind{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:.9rem;letter-spacing:-.02em;}
+.pv-tag{font-family:"IBM Plex Mono",monospace;font-size:.6rem;padding:.15rem .4rem;border-radius:1px;color:var(--enamel);white-space:nowrap;}
+.pv-tag.l1{background:var(--blu);} .pv-tag.l2{background:var(--verde);} .pv-tag.l3{background:var(--rosso);}
+
+/* ============================================================
+   LE TRE FASCE
+   ============================================================ */
+.band{color:var(--enamel);border-block:1px solid var(--ottone);}
+.band--1{background:var(--blu);}
+.band--2{background:var(--verde);}
+.band--3{background:var(--rosso);}
+.band + .band{border-top:0;}
+.band .wrap{padding-block:clamp(2.8rem,6vw,4.6rem);}
+.band-grid{display:grid;grid-template-columns:1fr;gap:clamp(1.6rem,4vw,3rem);}
+@media (min-width:940px){.band-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);}}
+.band .lv{
+  font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(237,238,232,.85);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;
+}
+.band .lv .price{
+  margin-left:auto;font-weight:600;color:var(--enamel);
+  border:1px solid rgba(237,238,232,.55);border-radius:var(--radius);padding:.2rem .55rem;
+}
+.band h2{font-size:var(--t-section);margin-bottom:.7rem;}
+.band .lead{font-size:clamp(1.08rem,1.9vw,1.42rem);line-height:1.35;max-width:24ch;}
+.band .example{
+  border:1px solid rgba(237,238,232,.4);border-left:4px solid var(--ottone);border-radius:var(--radius);
+  padding:1.1rem 1.2rem;margin-bottom:1.4rem;font-size:1.04rem;line-height:1.45;background:rgba(0,0,0,.16);
+}
+.band .example .who{
+  display:block;font-family:"IBM Plex Mono",monospace;font-size:.66rem;text-transform:uppercase;
+  letter-spacing:.12em;color:rgba(237,238,232,.85);margin-bottom:.5rem;
+}
+.feat{list-style:none;padding:0;margin:0 0 1.4rem;display:grid;gap:.55rem;}
+.feat li{display:flex;gap:.7rem;align-items:flex-start;font-size:1rem;line-height:1.35;}
+.feat li svg{flex:0 0 auto;margin-top:3px;}
+.forbox{display:grid;gap:.7rem;margin-bottom:1.5rem;}
+.forbox .fr{font-size:.97rem;}
+.forbox .fr b{
+  font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.7rem;text-transform:uppercase;
+  letter-spacing:.1em;display:block;margin-bottom:.15rem;color:rgba(237,238,232,.85);
+}
+.includes{
+  display:inline-flex;align-items:center;gap:.5rem;font-family:"IBM Plex Mono",monospace;font-size:.8rem;
+  color:var(--enamel);border:1px solid rgba(237,238,232,.45);border-radius:var(--radius);
+  padding:.35rem .7rem;margin-bottom:1.4rem;
+}
+
+/* ============================================================
+   TABELLA CUMULATIVA
+   ============================================================ */
+.compare-wrap{overflow-x:auto;border:var(--hair);border-radius:var(--radius);margin-top:2.2rem;}
+table.compare{width:100%;border-collapse:collapse;min-width:660px;font-size:.97rem;background:var(--ink-2);}
+.compare thead th{text-align:left;padding:1rem;vertical-align:bottom;border-bottom:var(--hair);font-family:"Bricolage Grotesque",sans-serif;}
+.compare thead th.lvl{color:var(--enamel);text-align:center;width:15%;}
+.compare thead th.lvl .n{display:block;font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.1em;font-weight:500;margin-bottom:.2rem;}
+.compare thead th.lvl b{font-size:1.1rem;letter-spacing:-.02em;}
+.compare thead th.c1{background:var(--blu);}
+.compare thead th.c2{background:var(--verde);}
+.compare thead th.c3{background:var(--rosso);}
+.compare thead th.feat-h{font-size:1rem;color:var(--fumo);font-weight:600;}
+.compare tbody td{padding:.78rem 1rem;border-bottom:var(--hair);}
+.compare tbody td.mark{text-align:center;}
+.compare tbody td.c1{background:rgba(20,49,92,.32);}
+.compare tbody td.c2{background:rgba(46,91,74,.32);}
+.compare tbody td.c3{background:rgba(166,43,34,.28);}
+.compare tbody tr:last-child td{border-bottom:0;}
+/* il trattino significa «non incluso»: e' informazione, deve leggersi */
+.dash{color:var(--fumo);font-family:"IBM Plex Mono",monospace;}
+.compare tfoot td{padding:1rem;font-family:"IBM Plex Mono",monospace;font-weight:600;text-align:center;border-top:var(--hair);}
+.compare tfoot td.feat-c{text-align:left;font-family:"Bricolage Grotesque",sans-serif;}
+.compare tfoot td.c1{color:var(--blu-on);}
+.compare tfoot td.c2{color:var(--verde-on);}
+.compare tfoot td.c3{color:var(--rosso-on);}
+
+/* ============================================================
+   GESTIONE
+   ============================================================ */
+.mgmt{border-block:var(--hair);background:var(--ink-2);}
+.mgmt-grid{display:grid;grid-template-columns:1fr;gap:clamp(1.6rem,4vw,3rem);align-items:start;}
+@media (min-width:940px){.mgmt-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);}}
+.mgmt h2{font-size:var(--t-section);margin-bottom:1rem;max-width:16ch;}
+.price-tag{
+  display:inline-flex;align-items:baseline;gap:.5rem;font-family:"IBM Plex Mono",monospace;
+  font-weight:600;font-size:1.18rem;color:var(--ottone-on);
+  border:1px solid var(--ottone);border-radius:var(--radius);padding:.5rem .9rem;margin-bottom:1.2rem;
+}
+.mgmt-list{list-style:none;padding:0;margin:0;border:var(--hair);border-radius:var(--radius);overflow:hidden;background:var(--ink);}
+.mgmt-list li{display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.1rem;border-bottom:var(--hair);}
+.mgmt-list li:last-child{border-bottom:0;}
+.mgmt-list li svg{flex:0 0 auto;margin-top:2px;}
+.mgmt-list li b{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;display:block;margin-bottom:.1rem;}
+.mgmt-list li span{color:var(--fumo);font-size:.94rem;}
+
+
+/* ============================================================
+   LAVORI
+   ============================================================ */
+.works{display:grid;grid-template-columns:1fr;border:var(--hair);border-radius:var(--radius);overflow:hidden;margin-top:2.2rem;background:var(--ink-2);}
+@media (min-width:760px){.works{grid-template-columns:1fr 1fr;}}
+.work{padding:clamp(1.5rem,3vw,2.1rem);border-bottom:var(--hair);display:flex;flex-direction:column;gap:.7rem;}
+@media (min-width:760px){
+  .work:nth-child(odd){border-right:var(--hair);}
+  .work:nth-last-child(-n+2){border-bottom:0;}
+}
+.work:last-child{border-bottom:0;}
+.work .w-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;}
+.work .w-name{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.22rem;letter-spacing:-.02em;}
+.work .w-kind{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--fumo);text-transform:uppercase;letter-spacing:.08em;}
+.work .w-lvl{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--enamel);padding:.2rem .55rem;border-radius:var(--radius);white-space:nowrap;}
+.work .w-lvl.l1{background:var(--blu);} .work .w-lvl.l2{background:var(--verde);} .work .w-lvl.l3{background:var(--rosso);}
+.work .w-num{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(1.9rem,3.6vw,2.6rem);letter-spacing:-.03em;line-height:1;}
+.work .w-num.l1{color:var(--blu-on);} .work .w-num.l2{color:var(--verde-on);} .work .w-num.l3{color:var(--rosso-on);}
+.work .w-desc{color:var(--fumo);font-size:.97rem;}
+
+
+/* ============================================================
+   PREVENTIVO
+   ============================================================ */
+.quote{background:var(--blu);color:var(--enamel);border-block:1px solid var(--ottone);}
+.quote .wrap{padding-block:clamp(3.2rem,7vw,5.5rem);}
+.quote-grid{display:grid;grid-template-columns:1fr;gap:clamp(2rem,5vw,3.5rem);}
+@media (min-width:940px){.quote-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);}}
+.quote h2{font-size:var(--t-section);margin-bottom:1rem;}
+.quote .kicker{color:rgba(237,238,232,.85);}
+.quote .q-sub{font-size:1.1rem;color:rgba(237,238,232,.92);max-width:30ch;}
+.q-side .mono-note{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:rgba(237,238,232,.85);margin-top:1.6rem;display:flex;gap:.5rem;align-items:flex-start;}
+form.qform{display:grid;gap:1.3rem;}
+.qform .fld{display:grid;gap:.5rem;}
+.qform label.top,.qform .top{
+  font-family:"IBM Plex Mono",monospace;font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;
+  color:rgba(237,238,232,.88);
+}
+.qform .req{color:#E8C06A;}   /* ottone schiarito: 6,1:1 sul blu */
+.qform input{
+  font-family:"Fraunces",serif;font-size:1.04rem;padding:.8rem .9rem;width:100%;
+  background:rgba(0,0,0,.28);border:1px solid rgba(237,238,232,.45);
+  border-radius:var(--radius);color:var(--enamel);
+}
+.qform input::placeholder{color:rgba(237,238,232,.5);}
+.qform input:focus{border-color:var(--ottone);outline:none;}
+.qform .two{display:grid;grid-template-columns:1fr;gap:1.3rem;}
+@media (min-width:560px){.qform .two{grid-template-columns:1fr 1fr;}}
+.seg-radio{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;}
+@media (min-width:560px){.seg-radio{grid-template-columns:repeat(4,1fr);}}
+.seg-radio .opt{position:relative;}
+.seg-radio input{position:absolute;opacity:0;pointer-events:none;}
+.seg-radio label{
+  display:block;text-align:center;cursor:pointer;
+  font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:.9rem;
+  padding:.7rem .4rem;border-radius:var(--radius);
+  border:1px solid rgba(237,238,232,.4);color:rgba(237,238,232,.8);
+  transition:background var(--d-micro) var(--ease-state), color var(--d-micro) var(--ease-state), border-color var(--d-micro) var(--ease-state);
+}
+.seg-radio label:hover{color:var(--enamel);}
+.seg-radio[data-sel="nonso"]   label[for="q-l-nonso"]{background:#2A2E33;border-color:var(--enamel);color:var(--enamel);}
+.seg-radio[data-sel="vetrina"] label[for="q-l-vetrina"]{background:#2B4A7C;border-color:var(--ottone);color:var(--enamel);}
+.seg-radio[data-sel="attivo"]  label[for="q-l-attivo"]{background:var(--verde);border-color:var(--ottone);color:var(--enamel);}
+.seg-radio[data-sel="negozio"] label[for="q-l-negozio"]{background:var(--rosso);border-color:var(--ottone);color:var(--enamel);}
+.qform .submit-row{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;}
+.qform .err{
+  display:none;color:var(--enamel);background:var(--rosso);font-family:"IBM Plex Mono",monospace;
+  font-size:.8rem;padding:.5rem .7rem;border-radius:var(--radius);border:1px solid var(--ottone);
+}
+.qform .err.show{display:block;}
+input.invalid{border-color:#E8C06A !important;box-shadow:inset 0 0 0 1px #E8C06A;}
+.confirm{display:none;border:1px solid var(--ottone);border-radius:var(--radius);padding:clamp(1.4rem,3vw,2rem);background:rgba(0,0,0,.26);}
+.confirm.show{display:block;}
+.confirm .badge{
+  display:inline-flex;align-items:center;gap:.6rem;font-family:"IBM Plex Mono",monospace;
+  font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(237,238,232,.9);margin-bottom:1rem;
+}
+.confirm h3{font-size:1.75rem;margin-bottom:.8rem;}
+.confirm p{color:rgba(237,238,232,.92);font-size:1.04rem;}
+.confirm .again{margin-top:1.2rem;background:none;border:0;padding:0;cursor:pointer;color:var(--enamel);}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.foot{border-top:var(--hair);padding-block:clamp(2.5rem,5vw,3.5rem);}
+.foot-grid{display:grid;grid-template-columns:1fr;gap:2rem;}
+@media (min-width:760px){.foot-grid{grid-template-columns:1.4fr 1fr 1fr;}}
+.foot .nameplate{margin-bottom:1rem;}
+.fcol h4{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ottone-on);margin-bottom:.9rem;}
+.fcol a,.fcol p{display:block;text-decoration:none;color:var(--enamel);font-size:.96rem;margin-bottom:.5rem;}
+.fcol a{border-bottom:1px solid transparent;width:max-content;transition:border-color var(--d-micro) var(--ease-state);}
+.fcol a:hover{border-bottom-color:var(--ottone);}
+.legal{
+  grid-column:1/-1;border-top:var(--hair);margin-top:1rem;padding-top:1.3rem;
+  display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--fumo);
+}
+.legal a{color:var(--fumo);}
+
+/* ============================================================
+   Rivelazione in scroll — visibile di default
+   ============================================================ */
+.fade{transition:opacity var(--d-enter) var(--ease-out), transform var(--d-enter) var(--ease-out);}
+html.js-reveal .fade{opacity:0;transform:translateY(16px);}
+html.js-reveal .fade.in{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){html.js-reveal .fade{opacity:1;transform:none;}}
+</style>
+</head>
+
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="nameplate" href="#top" aria-label="Web Planet — torna su">
+      <span class="dot" aria-hidden="true"></span><b>WEB PLANET</b>
+    </a>
+    <nav class="nav-links" aria-label="Sezioni">
+      <a href="#anteprime">Anteprime</a>
+      <a href="#pacchetti">I pacchetti</a>
+      <a href="#confronto">Cosa cambia</a>
+      <a href="#gestione">Gestione</a>
+    </nav>
+    <div class="head-cta"><a class="btn" href="#preventivo">Chiedi il preventivo</a></div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Siti web per attività locali</p>
+    <h1>Il sito che ti porta <em>clienti</em>.</h1>
+    <p class="hero-sub">Creiamo e gestiamo il sito della tua attività. Tre pacchetti, il prezzo scritto da subito, un referente che risponde.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#preventivo">Chiedi il preventivo <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== ANTEPRIME ==================== -->
+<section class="section-pad" id="anteprime" aria-labelledby="ant-h">
+  <div class="wrap">
+    <div class="section-head fade">
+      <p class="kicker">Anteprime</p>
+      <h2 id="ant-h">Otto attività, otto siti diversi.</h2>
+      <p>Non facciamo lo stesso sito con il logo cambiato. Passa il mouse su una scheda: si muove come si muoverebbe il tuo.</p>
+    </div>
+
+    <div class="pv-grid fade" id="pvGrid">
+
+      <!-- 1 · Ristorante -->
+      <article class="pv ac-rosso">
+        <div class="pv-bar"><i></i><i></i><i></i><span class="pv-url">ristorante-damario.it</span></div>
+        <div class="pv-frame"><div class="pv-scene">
+          <div class="m-sign"><span>Da Mario · cucina di pesce</span></div>
+          <div class="m-rows">
+            <div class="m-row"><span>Crudo del giorno</span><b>18 €</b></div>
+            <div class="m-row"><span>Spaghetti allo scoglio</span><b>16 €</b></div>
+            <div class="m-row"><span>Frittura mista</span><b>14 €</b></div>
+          </div>
+          <div class="m-spacer"></div>
+          <div class="m-btn">Prenota un tavolo</div>
+        </div></div>
+        <div class="pv-foot"><span class="pv-kind">Ristorante</span><span class="pv-tag l2">Attivo</span></div>
+      </article>
+
+      <!-- 2 · Bar -->
+      <article class="pv ac-ottone">
+        <div class="pv-bar"><i></i><i></i><i></i><span class="pv-url">torrefazione-centrale.it</span></div>
+        <div class="pv-frame"><div class="pv-scene">
+          <div class="m-top"><span class="m-name">Torrefazione<br>Centrale</span></div>
+          <div class="m-tiles">
+            <div class="m-tile"><em>9 €</em></div><div class="m-tile"><em>12 €</em></div><div class="m-tile"><em>7 €</em></div>
+          </div>
+          <div class="m-line w80"></div><div class="m-line w45"></div>
+          <div class="m-spacer"></div>
+          <div class="m-btn">Ordina online</div>
+        </div></div>
+        <div class="pv-foot"><span class="pv-kind">Bar</span><span class="pv-tag l3">Negozio</span></div>
+      </article>
+
+      <!-- 3 · Palestra -->
+      <article class="pv ac-verde">
+        <div class="pv-bar"><i></i><i></i><i></i><span class="pv-url">palestraatlas.it</span></div>
+        <div class="pv-frame"><div class="pv-scene">
+          <div class="m-top"><span class="m-name">Atlas · sala pesi e corsi</span></div>
+          <div class="m-week"><div class="on"></div><div></div><div class="on"></div><div></div><div class="on"></div></div>
+          <div class="m-rows">
+            <div class="m-row"><span>Funzionale · 19:00</span><b>7 posti</b></div>
+            <div class="m-row"><span>Pilates · 20:00</span><b>3 posti</b></div>
+          </div>
+          <div class="m-spacer"></div>
+          <div class="m-btn">Abbonati · 39 €/mese</div>
+        </div></div>
+        <div class="pv-foot"><span class="pv-kind">Palestra</span><span class="pv-tag l2">Attivo</span></div>
+      </article>
+
+      <!-- 4 · Studio tecnico -->
+      <article class="pv ac-blu">
+        <div class="pv-bar"><i></i><i></i><i></i><span class="pv-url">studioriva-progetti.it</span></div>
+        <div class="pv-frame"><div class="pv-scene">
+          <div class="m-sign"><span>Studio Riva · geometra</span></div>
+          <div class="m-rows">
+            <div class="m-row"><span>Ristrutturazioni</span><b>→</b></div>
+            <div class="m-row"><span>Pratiche catastali</span><b>→</b></div>
+            <div class="m-row"><span>Certificazioni</span><b>→</b></div>
+          </div>
+          <div class="m-line w60"></div>
+          <div class="m-spacer"></div>
+          <div class="m-btn ghost">Chiedi un sopralluogo</div>
+        </div></div>
+        <div class="pv-foot"><span class="pv-kind">Studio tecnico</span><span class="pv-tag l1">Vetrina</span></div>
+      </article>
+
+      <!-- 5 · Studio odontoiatrico -->
+      <article class="pv ac-blu">
+        <div class="pv-bar"><i></i><i></i><i></i><span class="pv-url">studiodentisticosole.it</span></div>
+        <div class="pv-frame"><div class="pv-scene">
+          <div class="m-top"><span class="m-name">Studio Sole · tre poltrone</span></div>
+          <div class="m-line w80"></div>
+          <div class="m-slots">
+            <span class="m-slot">9:00</span><span class="m-slot on">10:30</span><span class="m-slot">12:00</span>
+            <span class="m-slot on">15:30</span><span class="m-slot">17:00</span>
+          </div>
+          <div class="m-spacer"></div>
+          <div class="m-btn">Prenota una visita</div>
+        </div></div>
+        <div class="pv-foot"><span class="pv-kind">Studio odontoiatrico</span><span class="pv-tag l2">Attivo</span></div>
+      </article>
+
+      <!-- 6 · Studio medico -->
+      <article class="pv ac-verde">
+        <div class="pv-bar"><i></i><i></i><i></i><span class="pv-url">poliambulatorio-vita.it</span></div>
+        <div class="pv-frame"><div class="pv-scene">
+          <div class="m-sign"><span>Poliambulatorio Vita</span></div>
+          <div class="m-rows">
+            <div class="m-row"><span>Lun · Mer · Ven</span><b>8–13</b></div>
+            <div class="m-row"><span>Mar · Gio</span><b>15–19</b></div>
+            <div class="m-row"><span>Sabato</span><b>8–12</b></div>
+          </div>
+          <div class="m-spacer"></div>
+          <div class="m-btn">Prenota la visita</div>
+        </div></div>
+        <div class="pv-foot"><span class="pv-kind">Studio medico</span><span class="pv-tag l2">Attivo</span></div>
+      </article>
+
+      <!-- 7 · Concessionaria -->
+      <article class="pv ac-blu">
+        <div class="pv-bar"><i></i><i></i><i></i><span class="pv-url">autosalone-marino.it</span></div>
+        <div class="pv-frame"><div class="pv-scene">
+          <div class="m-top"><span class="m-name">Autosalone Marino</span></div>
+          <div class="m-cars">
+            <div class="m-car"><span class="box"></span><span>Berlina 2021</span><b>16.900</b></div>
+            <div class="m-car"><span class="box"></span><span>SUV 2019</span><b>21.500</b></div>
+            <div class="m-car"><span class="box"></span><span>Utilitaria 2022</span><b>11.200</b></div>
+          </div>
+          <div class="m-spacer"></div>
+          <div class="m-btn ghost">Prenota una prova</div>
+        </div></div>
+        <div class="pv-foot"><span class="pv-kind">Concessionaria</span><span class="pv-tag l1">Vetrina</span></div>
+      </article>
+
+      <!-- 8 · Discoteca -->
+      <article class="pv ac-rosso">
+        <div class="pv-bar"><i></i><i></i><i></i><span class="pv-url">clubnovecento.it</span></div>
+        <div class="pv-frame"><div class="pv-scene">
+          <div class="m-sign"><span>Club Novecento</span></div>
+          <div class="m-rows">
+            <div class="m-row"><span>Ven 12 · Revival</span><b>15 €</b></div>
+            <div class="m-row"><span>Sab 13 · Live band</span><b>20 €</b></div>
+            <div class="m-row"><span>Sab 20 · Guest dj</span><b>25 €</b></div>
+          </div>
+          <div class="m-spacer"></div>
+          <div class="m-btn">Entra in lista</div>
+        </div></div>
+        <div class="pv-foot"><span class="pv-kind">Discoteca</span><span class="pv-tag l2">Attivo</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MOMENTO DELLA SCELTA ==================== -->
+<section class="section-pad" aria-labelledby="scelta-h">
+  <div class="wrap">
+    <div class="section-head fade">
+      <p class="kicker">Da dove parti</p>
+      <h2 id="scelta-h">Tre domande. Poi sai già quale ti serve.</h2>
+    </div>
+    <div class="choice-grid fade">
+      <a class="choice" data-c="1" href="#livello-1">
+        <span class="q">Ti basta essere trovato?</span>
+        <span class="to">Ti serve una <span class="pill">Vetrina</span> · da 300 €</span>
+      </a>
+      <a class="choice" data-c="2" href="#livello-2">
+        <span class="q">Il telefono squilla tutto il giorno?</span>
+        <span class="to">Fai lavorare il sito: <span class="pill">Attivo</span> · da 800 €</span>
+      </a>
+      <a class="choice" data-c="3" href="#livello-3">
+        <span class="q">Hai prodotti da vendere?</span>
+        <span class="to">Apri il tuo <span class="pill">Negozio</span> · da 1.500 €</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div id="pacchetti"></div>
+
+<!-- ==================== LIVELLO 1 ==================== -->
+<section class="band band--1" id="livello-1">
+  <div class="wrap">
+    <div class="band-grid">
+      <div>
+        <p class="lv">Livello 1 <span class="price mono">da 300 €</span></p>
+        <h2>Vetrina</h2>
+        <p class="lead">Il sito che presenta l'attività. Chi sei, cosa fai, dove sei.</p>
+      </div>
+      <div>
+        <div class="example">
+          <span class="who">Cosa succede al cliente</span>
+          Marco cerca «pizzeria aperta adesso» dal telefono. Trova te per primo, vede le foto e gli orari, e ti chiama con un tocco. Cinque minuti fa non sapeva che esistevi.
+        </div>
+        <ul class="feat">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="#EDEEE8" stroke-width="1.6"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#C08A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Fino a 5 pagine, con testi e foto sistemati da noi</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="#EDEEE8" stroke-width="1.6"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#C08A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Orari, mappa e pulsante che ti chiama</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="#EDEEE8" stroke-width="1.6"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#C08A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Scheda Google curata, per farti trovare in zona</li>
+        </ul>
+        <div class="forbox">
+          <div class="fr"><b>Per</b>Studi tecnici, concessionarie e chi vive di passaggio: vuole essere trovato e sembrare serio.</div>
+          <div class="fr"><b>Non fa</b>Ricevere ordini, incassare, gestire prenotazioni.</div>
+        </div>
+        <a class="btn btn--on-color" href="#preventivo" data-pick="vetrina">Voglio la Vetrina <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== LIVELLO 2 ==================== -->
+<section class="band band--2" id="livello-2">
+  <div class="wrap">
+    <div class="band-grid">
+      <div>
+        <p class="lv">Livello 2 <span class="price mono">da 800 €</span></p>
+        <h2>Attivo</h2>
+        <p class="lead">Il sito che lavora anche quando l'attività è chiusa.</p>
+      </div>
+      <div>
+        <div class="example">
+          <span class="who">Cosa succede al cliente</span>
+          Sono le 23:30 e hai già chiuso. Giulia prenota un tavolo per sabato dal sito. Domani mattina la richiesta è lì che ti aspetta, con nome e telefono: nessuna chiamata persa.
+        </div>
+        <ul class="feat">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="#EDEEE8" stroke-width="1.6"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#C08A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Prenotazioni e appuntamenti con il calendario</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="#EDEEE8" stroke-width="1.6"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#C08A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Richieste e ordini che ti arrivano via email e WhatsApp</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="#EDEEE8" stroke-width="1.6"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#C08A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Abbonamenti e pagamenti che si rinnovano da soli</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="#EDEEE8" stroke-width="1.6"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#C08A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Area riservata per i tuoi clienti, se ti serve</li>
+        </ul>
+        <div class="forbox">
+          <div class="fr"><b>Per</b>Ristoranti, palestre, discoteche, studi medici e odontoiatrici: chi ogni giorno risponde al telefono per fissare qualcosa.</div>
+        </div>
+        <span class="includes"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#EDEEE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Include tutto il Livello 1</span><br>
+        <a class="btn btn--on-color" href="#preventivo" data-pick="attivo">Voglio il sito Attivo <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== LIVELLO 3 ==================== -->
+<section class="band band--3" id="livello-3">
+  <div class="wrap">
+    <div class="band-grid">
+      <div>
+        <p class="lv">Livello 3 <span class="price mono">da 1.500 €</span></p>
+        <h2>Negozio</h2>
+        <p class="lead">Il sito che vende i tuoi prodotti, anche fuori dal tuo comune.</p>
+      </div>
+      <div>
+        <div class="example">
+          <span class="who">Cosa succede al cliente</span>
+          Una signora che dal tuo banco non passerà mai mette tre confezioni nel carrello e paga con la carta. A te arriva l'ordine da preparare e spedire: hai incassato mentre servivi al bancone.
+        </div>
+        <ul class="feat">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="#EDEEE8" stroke-width="1.6"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#C08A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Catalogo con varianti, prezzi e disponibilità</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="#EDEEE8" stroke-width="1.6"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#C08A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Carrello e pagamento con carta, PayPal o contrassegno</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="#EDEEE8" stroke-width="1.6"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#C08A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Spedizioni, ritiro in negozio e fatture</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="#EDEEE8" stroke-width="1.6"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#C08A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Un pannello semplice per gestire prodotti e ordini da solo</li>
+        </ul>
+        <div class="forbox">
+          <div class="fr"><b>Per</b>Bar con torrefazione, gastronomie e chi ha prodotti da vendere oltre il banco.</div>
+        </div>
+        <span class="includes"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#EDEEE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Include tutto il Livello 2</span><br>
+        <a class="btn btn--on-color" href="#preventivo" data-pick="negozio">Voglio il Negozio <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== COSA CAMBIA DAVVERO ==================== -->
+<section class="section-pad" id="confronto" aria-labelledby="confronto-h">
+  <div class="wrap">
+    <div class="section-head fade">
+      <p class="kicker">Cosa cambia davvero</p>
+      <h2 id="confronto-h">Ogni pacchetto contiene quello prima.</h2>
+      <p>Le funzioni si sommano scendendo. Il Negozio fa tutto quello che fa la Vetrina, più il resto.</p>
+    </div>
+    <div class="compare-wrap fade">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th class="feat-h" scope="col">Il sito sa fare…</th>
+            <th class="lvl c1" scope="col"><span class="n">Livello 1</span><b>Vetrina</b></th>
+            <th class="lvl c2" scope="col"><span class="n">Livello 2</span><b>Attivo</b></th>
+            <th class="lvl c3" scope="col"><span class="n">Livello 3</span><b>Negozio</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Pagine, foto, orari e mappa</td>
+            <td class="mark c1"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#5B8FD8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="mark c2"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#5CAE8C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="mark c3"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#E05F49" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><td>Scheda Google e ricerche in zona</td>
+            <td class="mark c1"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#5B8FD8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="mark c2"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#5CAE8C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="mark c3"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#E05F49" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><td>Pulsante che ti chiama e contatti diretti</td>
+            <td class="mark c1"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#5B8FD8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="mark c2"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#5CAE8C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="mark c3"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#E05F49" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><td>Richieste dal sito, con risposta automatica</td>
+            <td class="mark c1"><span class="dash" aria-label="non incluso">—</span></td>
+            <td class="mark c2"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#5CAE8C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="mark c3"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#E05F49" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><td>Prenotazioni e appuntamenti</td>
+            <td class="mark c1"><span class="dash" aria-label="non incluso">—</span></td>
+            <td class="mark c2"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#5CAE8C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="mark c3"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#E05F49" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><td>Avviso su email e WhatsApp</td>
+            <td class="mark c1"><span class="dash" aria-label="non incluso">—</span></td>
+            <td class="mark c2"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#5CAE8C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="mark c3"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#E05F49" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><td>Abbonamenti e pagamenti ricorrenti</td>
+            <td class="mark c1"><span class="dash" aria-label="non incluso">—</span></td>
+            <td class="mark c2"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#5CAE8C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="mark c3"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#E05F49" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><td>Catalogo prodotti con disponibilità</td>
+            <td class="mark c1"><span class="dash" aria-label="non incluso">—</span></td>
+            <td class="mark c2"><span class="dash" aria-label="non incluso">—</span></td>
+            <td class="mark c3"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#E05F49" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><td>Carrello e pagamento con carta</td>
+            <td class="mark c1"><span class="dash" aria-label="non incluso">—</span></td>
+            <td class="mark c2"><span class="dash" aria-label="non incluso">—</span></td>
+            <td class="mark c3"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#E05F49" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+          <tr><td>Spedizioni, resi e fatture</td>
+            <td class="mark c1"><span class="dash" aria-label="non incluso">—</span></td>
+            <td class="mark c2"><span class="dash" aria-label="non incluso">—</span></td>
+            <td class="mark c3"><svg width="20" height="20" viewBox="0 0 24 24" aria-label="incluso"><path d="M5 12.5l4 4L19 7" fill="none" stroke="#E05F49" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td class="feat-c">Da</td><td class="c1">300 €</td><td class="c2">800 €</td><td class="c3">1.500 €</td></tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GESTIONE ==================== -->
+<section class="mgmt section-pad" id="gestione" aria-labelledby="gestione-h">
+  <div class="wrap">
+    <div class="mgmt-grid">
+      <div class="fade">
+        <p class="kicker">In ogni pacchetto</p>
+        <h2 id="gestione-h">Il sito non ti lascia solo il giorno dopo.</h2>
+        <span class="price-tag">Gestione <span class="mono">100 €/mese</span></span>
+        <p class="muted" style="max-width:34ch;">La consegna è l'inizio, non la fine. Cosa è incluso te lo scriviamo nero su bianco: nessun costo a sorpresa.</p>
+      </div>
+      <ul class="mgmt-list fade">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="1" fill="none" stroke="#EDEEE8" stroke-width="1.8"/><path d="M8 10V8a4 4 0 0 1 8 0v2" fill="none" stroke="#C08A2E" stroke-width="1.8"/></svg><div><b>Hosting e dominio</b><span>Li teniamo online e rinnovati, tu non ci pensi.</span></div></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 1 2.3 5.6" fill="none" stroke="#EDEEE8" stroke-width="1.8"/><path d="M4 12V7M4 12h5" stroke="#C08A2E" stroke-width="1.8" stroke-linecap="round"/></svg><div><b>Backup ogni giorno</b><span>Una copia al sicuro. Se succede qualcosa, si torna indietro.</span></div></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z" fill="none" stroke="#EDEEE8" stroke-width="1.8"/><path d="M9 12l2 2 4-4" fill="none" stroke="#C08A2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Aggiornamenti e sicurezza</b><span>Il sito resta veloce, protetto e in regola.</span></div></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z" fill="none" stroke="#EDEEE8" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 10h8M8 13h5" stroke="#C08A2E" stroke-width="1.8" stroke-linecap="round"/></svg><div><b>Modifiche ai contenuti</b><span>Cambi orari, foto, prezzi o un'offerta? Ce lo dici e lo facciamo.</span></div></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-7" stroke="#EDEEE8" stroke-width="1.8" stroke-linecap="round"/><circle cx="19" cy="9" r="1.8" fill="#C08A2E"/></svg><div><b>Report ogni mese</b><span>Quante persone ti hanno trovato e cosa hanno fatto, in parole semplici.</span></div></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.4" fill="none" stroke="#EDEEE8" stroke-width="1.8"/><path d="M5 20a7 7 0 0 1 14 0" fill="none" stroke="#C08A2E" stroke-width="1.8" stroke-linecap="round"/></svg><div><b>Una persona che risponde</b><span>Un nome e un numero, non un ticket. Chi risponde conosce il tuo sito.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==================== LAVORI ==================== -->
+<section class="section-pad" id="lavori" aria-labelledby="lavori-h">
+  <div class="wrap">
+    <div class="section-head fade">
+      <p class="kicker">Lavori</p>
+      <h2 id="lavori-h">Cosa è cambiato, in numeri.</h2>
+    </div>
+    <div class="works fade">
+      <article class="work">
+        <div class="w-top"><div><span class="w-name">Ristorante</span><br><span class="w-kind">cucina di pesce</span></div><span class="w-lvl l2">Attivo</span></div>
+        <span class="w-num l2">120/mese</span>
+        <p class="w-desc">prenotazioni arrivano dal sito, non più solo dal telefono nell'ora di punta.</p>
+      </article>
+      <article class="work">
+        <div class="w-top"><div><span class="w-name">Palestra</span><br><span class="w-kind">sala pesi e corsi</span></div><span class="w-lvl l2">Attivo</span></div>
+        <span class="w-num l2">+64%</span>
+        <p class="w-desc">di abbonamenti rinnovati da soli: il pagamento si ripete senza rincorrere nessuno.</p>
+      </article>
+      <article class="work">
+        <div class="w-top"><div><span class="w-name">Studio odontoiatrico</span><br><span class="w-kind">tre poltrone</span></div><span class="w-lvl l1">Vetrina</span></div>
+        <span class="w-num l1">+38%</span>
+        <p class="w-desc">di chiamate dalla scheda Google, dopo due mesi dalla pubblicazione.</p>
+      </article>
+      <article class="work">
+        <div class="w-top"><div><span class="w-name">Bar</span><br><span class="w-kind">torrefazione e prodotti</span></div><span class="w-lvl l3">Negozio</span></div>
+        <span class="w-num l3">310</span>
+        <p class="w-desc">ordini spediti in tutta Italia nel primo semestre, gestiti dal pannello in autonomia.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==================== PREVENTIVO ==================== -->
+<section class="quote" id="preventivo" aria-labelledby="preventivo-h">
+  <div class="wrap">
+    <div class="quote-grid">
+      <div class="q-side">
+        <p class="kicker">Preventivo</p>
+        <h2 id="preventivo-h">Chiedi il preventivo.</h2>
+        <p class="q-sub">Rispondiamo entro un giorno lavorativo con una proposta chiara. Nessun impegno.</p>
+        <p class="mono-note">
+          <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" style="flex:0 0 auto;margin-top:2px;"><rect x="4" y="10" width="16" height="10" rx="1" fill="none" stroke="#E8C06A" stroke-width="1.8"/><path d="M8 10V8a4 4 0 0 1 8 0v2" fill="none" stroke="#E8C06A" stroke-width="1.8"/></svg>
+          I tuoi dati servono solo a risponderti. Niente newsletter, niente spam.
+        </p>
+      </div>
+
+      <div>
+        <form class="qform" id="quoteForm" novalidate>
+          <div class="fld">
+            <label class="top" for="q-attivita">Come si chiama la tua attività? <span class="req">*</span></label>
+            <input type="text" id="q-attivita" name="attivita" placeholder="Es. Ristorante Da Mario" autocomplete="organization" required>
+          </div>
+
+          <div class="fld">
+            <span class="top" id="lbl-liv">Quale pacchetto ti interessa?</span>
+            <div class="seg-radio" role="radiogroup" aria-labelledby="lbl-liv" data-sel="nonso">
+              <div class="opt"><input type="radio" name="livello" id="q-l-nonso" value="Non lo so ancora" checked><label for="q-l-nonso">Non lo so</label></div>
+              <div class="opt"><input type="radio" name="livello" id="q-l-vetrina" value="Vetrina"><label for="q-l-vetrina">Vetrina</label></div>
+              <div class="opt"><input type="radio" name="livello" id="q-l-attivo" value="Attivo"><label for="q-l-attivo">Attivo</label></div>
+              <div class="opt"><input type="radio" name="livello" id="q-l-negozio" value="Negozio"><label for="q-l-negozio">Negozio</label></div>
+            </div>
+          </div>
+
+          <div class="fld">
+            <label class="top" for="q-obiettivo">In una riga: cosa deve fare il sito? <span class="req">*</span></label>
+            <input type="text" id="q-obiettivo" name="obiettivo" placeholder="Es. farmi trovare e ricevere prenotazioni" required>
+          </div>
+
+          <div class="two">
+            <div class="fld">
+              <label class="top" for="q-email">La tua email <span class="req">*</span></label>
+              <input type="email" id="q-email" name="email" placeholder="nome@esempio.it" autocomplete="email" required>
+            </div>
+            <div class="fld">
+              <label class="top" for="q-tel">Telefono <span style="text-transform:none;letter-spacing:0;">(se preferisci una chiamata)</span></label>
+              <input type="tel" id="q-tel" name="telefono" placeholder="Facoltativo" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="btn">Chiedi il preventivo <span class="arrow" aria-hidden="true">→</span></button>
+            <p class="err" id="formErr" role="alert"></p>
+          </div>
+        </form>
+
+        <div class="confirm" id="quoteConfirm" role="status" aria-live="polite" tabindex="-1">
+          <span class="badge"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#C08A2E"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#14315C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Preventivo richiesto</span>
+          <h3 id="confirmTitle">Grazie!</h3>
+          <p id="confirmBody"></p>
+          <button type="button" class="textlink again" id="quoteAgain">Modifica la richiesta</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="nameplate" href="#top" aria-label="Web Planet — torna su"><span class="dot" aria-hidden="true"></span><b>WEB PLANET</b></a>
+        <p class="muted" style="max-width:32ch;">Creiamo e gestiamo siti web per le attività locali. Un'insegna che si vede anche online.</p>
+      </div>
+      <div class="fcol">
+        <h4>Contatti</h4>
+        <a href="mailto:mailacaso@gmail.com">mailacaso@gmail.com</a>
+        <a href="tel:+393330000000">333 000 0000</a>
+        <a href="https://wa.me/393330000000">WhatsApp 333 000 0000</a>
+      </div>
+      <div class="fcol">
+        <h4>Info</h4>
+        <a href="#anteprime">Anteprime</a>
+        <a href="#pacchetti">I tre pacchetti</a>
+        <a href="#preventivo">Chiedi il preventivo</a>
+      </div>
+      <div class="legal">
+        <span>© <span id="year">2026</span> Web Planet</span>
+        <span>P. IVA 00000000000</span>
+        <a href="#">Privacy</a>
+        <a href="#">Cookie</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   WEB PLANET — vanilla, nessuna libreria
+   ============================================================ */
+
+/* Endpoint del preventivo: lascia "" per la modalità dimostrativa
+   (mostra comunque una conferma reale). Inserisci qui l'URL del
+   servizio a cui inviare i dati per riceverli davvero via email. */
+const PREVENTIVO_ENDPOINT = "";
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer  = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+const yearEl = document.getElementById('year');
+if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* ============================================================
+   PARALLASSE — una sola matematica, due usi
+   centro = riposo · bordi = scala 1.15 e traslazione opposta
+   La scena sborda del 7,5% per lato e la traslazione effettiva
+   arriva al 4,6%: il bordo della cornice non si scopre mai.
+   ============================================================ */
+const MAX_SCALE = 0.15;   /* 1.0 → 1.15 */
+const MAX_SHIFT = 4;      /* ±4%        */
+
+function transformFor(nx, ny){
+  const d  = Math.min(1, Math.hypot(nx, ny) / Math.SQRT2);
+  const s  = 1 + MAX_SCALE * d;
+  const tx = (-nx * MAX_SHIFT).toFixed(3);
+  const ty = (-ny * MAX_SHIFT).toFixed(3);
+  return 'scale(' + s.toFixed(4) + ') translate(' + tx + '%,' + ty + '%)';
+}
+const REST = 'scale(1) translate(0,0)';
+
+/* ---------- le anteprime: si muove solo quella sotto il mouse ---------- */
+(function(){
+  const grid = document.getElementById('pvGrid');
+  if(!grid || reduceMotion || !finePointer.matches) return;
+
+  let current = null, nx = 0, ny = 0, ticking = false;
+
+  function render(){
+    ticking = false;
+    if(current) current.style.transform = transformFor(nx, ny);
+  }
+
+  /* delega: un solo set di listener per tutte e otto le schede */
+  grid.addEventListener('pointermove', e=>{
+    if(e.pointerType !== 'mouse') return;
+    const card = e.target.closest('.pv');
+    /* nello spazio tra due schede non c'è nessuna scheda sotto il mouse:
+       quella di prima deve tornare a riposo, non restare ingrandita */
+    if(!card){ releaseAll(); return; }
+    const scene = card.querySelector('.pv-scene');
+    if(!scene) return;
+
+    if(scene !== current){
+      if(current){ current.style.transform = REST; current.style.willChange = 'auto'; }
+      current = scene;
+      scene.style.willChange = 'transform';
+    }
+    /* normalizzazione rispetto alla scheda, non alla finestra */
+    const r = card.getBoundingClientRect();
+    nx = ((e.clientX - r.left) / r.width)  * 2 - 1;
+    ny = ((e.clientY - r.top)  / r.height) * 2 - 1;
+    if(!ticking){ ticking = true; requestAnimationFrame(render); }
+  }, {passive:true});
+
+  function releaseAll(){
+    if(!current) return;
+    current.style.transform = REST;
+    const gone = current;
+    current = null;
+    setTimeout(()=>{ if(current !== gone) gone.style.willChange = 'auto'; }, 250);
+  }
+  grid.addEventListener('pointerleave', releaseAll);
+  window.addEventListener('blur', releaseAll);
+  if(finePointer.addEventListener){
+    finePointer.addEventListener('change', ev=>{ if(!ev.matches) releaseAll(); });
+  }
+})();
+
+/* ============================================================
+   Selettore del pacchetto nel form
+   ============================================================ */
+const segRadio = document.querySelector('.seg-radio');
+function syncSegRadio(){
+  const checked = document.querySelector('input[name="livello"]:checked');
+  if(checked && segRadio) segRadio.dataset.sel = checked.id.replace('q-l-','');
+}
+document.querySelectorAll('input[name="livello"]').forEach(r=>{
+  r.addEventListener('change', syncSegRadio);
+});
+document.querySelectorAll('[data-pick]').forEach(a=>{
+  a.addEventListener('click', ()=>{
+    const map = { vetrina:'q-l-vetrina', attivo:'q-l-attivo', negozio:'q-l-negozio' };
+    const el = document.getElementById(map[a.dataset.pick]);
+    if(el){ el.checked = true; syncSegRadio(); }
+  });
+});
+
+/* ============================================================
+   Form del preventivo
+   ============================================================ */
+(function(){
+  const form = document.getElementById('quoteForm');
+  const formErr = document.getElementById('formErr');
+  const box = document.getElementById('quoteConfirm');
+  const body = document.getElementById('confirmBody');
+  const title = document.getElementById('confirmTitle');
+  const again = document.getElementById('quoteAgain');
+  if(!form || !box) return;
+
+  form.addEventListener('submit', async e=>{
+    e.preventDefault();
+    form.querySelectorAll('.invalid').forEach(i=>i.classList.remove('invalid'));
+    formErr.classList.remove('show');
+
+    const attivita  = form.attivita.value.trim();
+    const obiettivo = form.obiettivo.value.trim();
+    const email     = form.email.value.trim();
+    const livello   = form.livello.value;
+
+    const missing = [];
+    if(!attivita){ form.attivita.classList.add('invalid'); missing.push("il nome dell'attività"); }
+    if(!obiettivo){ form.obiettivo.classList.add('invalid'); missing.push('cosa deve fare il sito'); }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ form.email.classList.add('invalid'); missing.push("un'email valida per risponderti"); }
+
+    if(missing.length){
+      formErr.textContent = 'Manca ' + missing.join(', ') + '.';
+      formErr.classList.add('show');
+      const first = form.querySelector('.invalid');
+      if(first) first.focus();
+      return;
+    }
+
+    const data = { attivita, livello, obiettivo, email, telefono: form.telefono.value.trim(), origine:'web-planet' };
+    const sub = form.querySelector('button[type=submit]');
+    let ok = true;
+
+    if(PREVENTIVO_ENDPOINT){
+      if(sub){ sub.disabled = true; sub.textContent = 'Invio…'; }
+      try{
+        const res = await fetch(PREVENTIVO_ENDPOINT, {
+          method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+          body:JSON.stringify(data)
+        });
+        ok = res.ok;
+      }catch(err){ ok = false; }
+      if(sub) sub.disabled = false;
+    }
+
+    if(!ok){
+      if(sub) sub.innerHTML = 'Chiedi il preventivo <span class="arrow" aria-hidden="true">→</span>';
+      formErr.textContent = 'Invio non riuscito. Riprova, oppure scrivici a mailacaso@gmail.com.';
+      formErr.classList.add('show');
+      return;
+    }
+
+    /* il pulsante diventa lo stato confermato: larghezza bloccata,
+       così il layout non salta */
+    if(sub){
+      sub.style.minWidth = sub.getBoundingClientRect().width + 'px';
+      sub.classList.add('is-done');
+      sub.textContent = 'Preventivo richiesto';
+      sub.disabled = true;
+    }
+
+    const perPacchetto = livello === 'Non lo so ancora'
+      ? 'con una proposta sul pacchetto più adatto a te'
+      : 'con una proposta per il pacchetto ' + livello;
+    title.textContent = 'Grazie, ' + attivita + '.';
+    body.textContent = 'Ti scriviamo a ' + email + ' entro un giorno lavorativo, ' + perPacchetto + '.';
+
+    const swap = ()=>{
+      form.style.display = 'none';
+      box.classList.add('show');
+      box.focus({preventScroll:true});
+    };
+    if(reduceMotion) swap(); else setTimeout(swap, 600);
+  });
+
+  if(again) again.addEventListener('click', ()=>{
+    box.classList.remove('show');
+    form.style.display = 'grid';
+    const sub = form.querySelector('button[type=submit]');
+    if(sub){
+      sub.classList.remove('is-done');
+      sub.disabled = false;
+      sub.style.minWidth = '';
+      sub.innerHTML = 'Chiedi il preventivo <span class="arrow" aria-hidden="true">→</span>';
+    }
+    form.attivita.focus();
+  });
+})();
+
+/* ============================================================
+   Rivelazione in scroll — con rete di sicurezza:
+   se l'observer non scatta, il contenuto si mostra comunque.
+   ============================================================ */
+if(!reduceMotion){
+  const fades = [...document.querySelectorAll('.fade')];
+  document.documentElement.classList.add('js-reveal');
+
+  const sweep = ()=>{
+    const vh = window.innerHeight || document.documentElement.clientHeight || 800;
+    for(const el of fades){
+      if(el.classList.contains('in')) continue;
+      const r = el.getBoundingClientRect();
+      if(r.top < vh * 0.9 && r.bottom > 0) el.classList.add('in');
+    }
+  };
+
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries, obs)=>{
+      entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); obs.unobserve(en.target); } });
+    }, {threshold:0, rootMargin:'0px 0px -10% 0px'});
+    fades.forEach(el => io.observe(el));
+  }
+  sweep();
+  let t = false;
+  const onScroll = ()=>{ if(t) return; t = true; requestAnimationFrame(()=>{ sweep(); t = false; }); };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  window.addEventListener('load', sweep);
+  setTimeout(sweep, 500);
+}
+</script>
+</body>
+</html>
