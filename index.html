@@ -29,7 +29,6 @@
   "name": "Web Planet",
   "description": "Studio che crea e gestisce siti web per attività locali: siti vetrina, siti con prenotazioni e ordini, negozi online.",
   "url": "https://www.webplanet.it/",
-  "email": "mailacaso@gmail.com",
   "telephone": "+393330000000",
   "priceRange": "€€",
   "image": "https://www.webplanet.it/anteprima.png",
@@ -986,7 +985,6 @@ html.js-reveal .fade.in{opacity:1;transform:none;}
       </div>
       <div class="fcol">
         <h4>Contatti</h4>
-        <a href="mailto:mailacaso@gmail.com">mailacaso@gmail.com</a>
         <a href="tel:+393330000000">333 000 0000</a>
         <a href="https://wa.me/393330000000">WhatsApp 333 000 0000</a>
       </div>
@@ -1011,10 +1009,10 @@ html.js-reveal .fade.in{opacity:1;transform:none;}
    WEB PLANET — vanilla, nessuna libreria
    ============================================================ */
 
-/* Endpoint del preventivo: lascia "" per la modalità dimostrativa
-   (mostra comunque una conferma reale). Inserisci qui l'URL del
-   servizio a cui inviare i dati per riceverli davvero via email. */
-const PREVENTIVO_ENDPOINT = "";
+/* Endpoint del preventivo. Le richieste arrivano via email su Formspree.
+   Per tornare alla modalità dimostrativa (nessun invio, solo conferma a
+   schermo) basta rimettere la stringa vuota "". */
+const PREVENTIVO_ENDPOINT = "https://formspree.io/f/maqrkrzq";
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer  = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -1142,7 +1140,14 @@ document.querySelectorAll('[data-pick]').forEach(a=>{
       return;
     }
 
-    const data = { attivita, livello, obiettivo, email, telefono: form.telefono.value.trim(), origine:'web-planet' };
+    const data = {
+      attivita, livello, obiettivo, email,
+      telefono: form.telefono.value.trim(),
+      origine: 'web-planet',
+      /* Formspree usa _subject come oggetto dell'email che ti arriva,
+         e il campo "email" come indirizzo a cui rispondere */
+      _subject: 'Preventivo — ' + attivita + ' · pacchetto ' + livello
+    };
     const sub = form.querySelector('button[type=submit]');
     let ok = true;
 
@@ -1160,7 +1165,7 @@ document.querySelectorAll('[data-pick]').forEach(a=>{
 
     if(!ok){
       if(sub) sub.innerHTML = 'Chiedi il preventivo <span class="arrow" aria-hidden="true">→</span>';
-      formErr.textContent = 'Invio non riuscito. Riprova, oppure scrivici a mailacaso@gmail.com.';
+      formErr.textContent = 'Invio non riuscito. Riprova, oppure chiamaci allo 333 000 0000.';
       formErr.classList.add('show');
       return;
     }
